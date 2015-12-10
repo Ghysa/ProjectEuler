@@ -153,4 +153,67 @@ public class HelperFunctions {
 		}
 		return true;
 	}
+
+	public static boolean isPalindromeBase10(int number) {
+		String num = Integer.toString(number);
+		return isPalindromeString(num);
+	}
+	
+	public static boolean isPalindromeBase2(int number) {
+		String num = Integer.toBinaryString(number);
+		return isPalindromeString(num);
+	}
+
+	public static boolean isPalindromeString(String string) {
+		char[] chars = string.toCharArray();
+		for (int i = 0; i < chars.length/2; i++) {
+			if (chars[i] != chars[chars.length-i-1])
+				return false;
+		}
+		return true;
+	}
+
+	
+	public static int reverseInt(int number) {
+		return Integer.parseInt(reverseString(Integer.toString(number)));
+	}
+	
+	public static BigInteger reverseBigInt(BigInteger number) {
+		return new BigInteger(reverseString(number.toString()));
+	}
+
+	public static String reverseString(String num) {
+		char[] ca = num.toCharArray();
+		List<Character> li = new ArrayList<>();
+		for (char c : ca) {
+			li.add(c);
+		}
+		Collections.reverse(li);
+		return stringFromCharacterList(li);
+	}
+
+	public static String stringFromCharacterList(List<Character> li) {
+		StringBuilder str = new StringBuilder();
+		for (Character c : li) {
+			str.append(c);
+		}		
+		return str.toString();
+	}
+
+	public static int sumOfDigitsInt(int number) {
+		return sumOfDigitsString(Integer.toString(number));
+	}
+
+	public static int sumOfDigitsBigInt(BigInteger number) {
+		return sumOfDigitsString(number.toString());
+	}
+	
+	public static int sumOfDigitsString(String num) {
+		int result = 0;
+		char[] arr = num.toCharArray();        
+        for (char c : arr) {
+            result += Character.getNumericValue(c);
+        }        
+        return result;
+	}
 }

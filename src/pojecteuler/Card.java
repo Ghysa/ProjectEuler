@@ -1,21 +1,21 @@
 package pojecteuler;
 
 enum Suit {
-	 HEARTS(2) {
-		public String getChar() {
-			return "H";
-		}
-	}, CLUBS(3) {
-		public String getChar() {
-			return "C";
-		}
-	}, SPADES(1) {
+	SPADES(1) {
 		public String getChar() {
 			return "S";
 		}
-	}, DIAMONDS(4) {
+	}, HEARTS(2) {
+		public String getChar() {
+			return "H";
+		}
+	},  DIAMONDS(3) {
 		public String getChar() {
 			return "D";
+		}
+	}, CLUBS(4) {
+		public String getChar() {
+			return "C";
 		}
 	};
 	Suit(int rank) {
@@ -103,12 +103,18 @@ enum Rank {
 	public int getRank() {
 		return this.rank;
 	}
+	public static boolean compare (Rank _1, Rank _2) {
+		if (_1.rank > _2.rank) {
+			return true;
+		}
+		return false;
+	}
 	public String getChar() {
 		return "";
 	}
 }
 
-public class Card {
+public class Card implements Comparable<Card> {
 	private Rank rank;
 	private Suit suit;
 	
@@ -184,6 +190,15 @@ public class Card {
 	
 	public String toString() {
 		return ""+this.rank.getChar()+this.suit.getChar();
+	}
+	
+	public int compareTo(Card card) {
+		int rankComp = this.rank.compareTo(card.getRank());
+		if (rankComp == 0) {
+			return (this.suit.compareTo(card.getSuit())*-1);
+		} else {
+			return rankComp;
+		}
 	}
 	
 	public Rank getRank() {
