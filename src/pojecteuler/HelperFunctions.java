@@ -173,7 +173,6 @@ public class HelperFunctions {
 		return true;
 	}
 
-	
 	public static int reverseInt(int number) {
 		return Integer.parseInt(reverseString(Integer.toString(number)));
 	}

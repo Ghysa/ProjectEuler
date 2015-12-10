@@ -18,7 +18,7 @@ public class ProjectEuler {
     	
     	long startTime = System.currentTimeMillis();
     	
-    	System.out.println("result: " + Q56.powerDigitSum(100));
+    	System.out.println("result: " + Q60.primePairSets());
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }
