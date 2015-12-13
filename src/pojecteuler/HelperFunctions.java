@@ -98,6 +98,15 @@ public class HelperFunctions {
 		
 		return list;
 	}
+	
+	public static List<Integer> getDigitsString(String number) {
+		List<Integer> list = new ArrayList<>();
+		char[] ca = number.toCharArray();
+		for (char c : ca) {
+			list.add(Character.getNumericValue(c));
+		}
+		return list;
+	}
 
 	public static int factorialRecursive(int i) {
 		if (i > 1)			
@@ -214,5 +223,99 @@ public class HelperFunctions {
             result += Character.getNumericValue(c);
         }        
         return result;
+	}
+
+	public static int concatenateInts(int num1, int num2) {
+		return Integer.parseInt(String.valueOf(num1) + String.valueOf(num2));
+	}
+
+	public static List<Integer> generateTriangleNumbers(int min, int max) {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		
+		for (int n = 2; list.get(list.size()-1) < max; n++) {
+			if (n*(n+1)/2 > min)
+				list.add(n*(n+1)/2);
+		}
+		
+		list.remove(list.size()-1);
+		if (min > 1)
+			list.remove(0);
+		return list;
+	}
+	
+	public static List<Integer> generateSquareNumbers(int min, int max) {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		
+		for (int n = 2; list.get(list.size()-1) < max; n++) {
+			if(n*n > min)
+				list.add(n*n);
+		}
+		
+		list.remove(list.size()-1);
+		if (min > 1)
+			list.remove(0);
+		return list;
+	}
+
+	public static List<Integer> generatePentagonalNumbers(int min, int max) {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		
+		for (int n = 2; list.get(list.size()-1) < max; n++) {
+			if (n*(3*n-1)/2 > min)
+				list.add(n*(3*n-1)/2);
+		}
+		
+		list.remove(list.size()-1);
+		if (min > 1)
+			list.remove(0);
+		return list;
+	}
+	
+	public static List<Integer> generateHexagonalNumbers(int min, int max) {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		
+		for (int n = 2; list.get(list.size()-1) < max; n++) {
+			if (n*(2*n-1) > min)
+				list.add(n*(2*n-1));
+		}
+		
+		list.remove(list.size()-1);
+		if (min > 1)
+			list.remove(0);
+		return list;
+	}
+	
+	public static List<Integer> generateHeptagonalNumbers(int min, int max) {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		
+		for (int n = 2; list.get(list.size()-1) < max; n++) {
+			if (n*(5*n-3)/2 > min)
+				list.add(n*(5*n-3)/2);
+		}
+		
+		list.remove(list.size()-1);
+		if (min > 1)
+			list.remove(0);
+		return list;
+	}
+	
+	public static List<Integer> generateOctagonalNumbers(int min, int max) {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		
+		for (int n = 2; list.get(list.size()-1) < max; n++) {
+			if (n*(3*n-2) > min)
+				list.add(n*(3*n-2));
+		}
+		
+		list.remove(list.size()-1);
+		if (min > 1)
+			list.remove(0);
+		return list;
 	}
 }

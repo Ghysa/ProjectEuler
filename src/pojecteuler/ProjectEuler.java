@@ -18,7 +18,14 @@ public class ProjectEuler {
     	
     	long startTime = System.currentTimeMillis();
     	
-    	System.out.println("result: " + Q60.primePairSets());
+//    	List<Integer> list = new ArrayList<>();
+//    	list.add(2389);
+//    	list.add(8956);
+//    	list.add(5621);
+//    	list.add(2578);
+//    	list.add(7823);
+    	
+    	System.out.println("result: " + Q62.cubicPermutations());
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }

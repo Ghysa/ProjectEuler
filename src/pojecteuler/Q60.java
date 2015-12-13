@@ -12,32 +12,51 @@ public class Q60 {
 		
 		List<Integer> primes = HelperFunctions.findPrimes(max);
 		List<Integer> primesBig = HelperFunctions.findPrimes(max*max);
-		Set<Integer> primeSet = new HashSet<>(primesBig);
+		Set<Integer> containsSet = new HashSet<>(primesBig);
 		
-		
-		
-		for (int i = 0; i < 29; i++)
-			primes.remove(0);
+		// 2 & 5 are impossible
+		primes.remove(0);
+		primes.remove(1);
 		
 		System.out.println(primes);
 		
 		for (int i = 0; i < primes.size(); i++) {
 			for (int j = i+1; j < primes.size(); j++) {
-				if (primes.get(i).equals(primes.get(j))) {
+				if (containsSet.contains(HelperFunctions.concatenateInts(primes.get(i), primes.get(j))) == false 
+						|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(j), primes.get(i))) == false
+						|| primes.get(i).equals(primes.get(j))) {
 					continue;
 				}
 				for (int k = j+1; k < primes.size(); k++) {
-					if (primes.get(i).equals(primes.get(k)) || primes.get(j).equals(primes.get(k))) {
+					if (containsSet.contains(HelperFunctions.concatenateInts(primes.get(i), primes.get(k))) == false 
+							|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(k), primes.get(i))) == false
+							|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(j), primes.get(k))) == false 
+							|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(k), primes.get(j))) == false
+							|| primes.get(i).equals(primes.get(k)) || primes.get(j).equals(primes.get(k))) {
 						continue;
 					}
 					for (int l = k+1; l < primes.size(); l++) {
-						if (primes.get(i).equals(primes.get(l)) || primes.get(j).equals(primes.get(l))
+						if (containsSet.contains(HelperFunctions.concatenateInts(primes.get(i), primes.get(l))) == false 
+								|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(l), primes.get(i))) == false
+								|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(j), primes.get(l))) == false 
+								|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(l), primes.get(j))) == false
+								|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(k), primes.get(l))) == false 
+								|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(l), primes.get(k))) == false
+								|| primes.get(i).equals(primes.get(l)) || primes.get(j).equals(primes.get(l))
 								|| primes.get(k).equals(primes.get(l))) {
 							continue;
 						}
 						INNER:
 						for (int m = l+1; m < primes.size(); m++) {
-							if (primes.get(i).equals(primes.get(m)) || primes.get(j).equals(primes.get(m))
+							if (containsSet.contains(HelperFunctions.concatenateInts(primes.get(i), primes.get(m))) == false 
+									|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(m), primes.get(i))) == false
+									|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(j), primes.get(m))) == false 
+									|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(m), primes.get(j))) == false
+									|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(k), primes.get(m))) == false 
+									|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(m), primes.get(k))) == false
+									|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(l), primes.get(m))) == false 
+									|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(m), primes.get(l))) == false
+									|| primes.get(i).equals(primes.get(m)) || primes.get(j).equals(primes.get(m))
 									|| primes.get(k).equals(primes.get(m)) || primes.get(l).equals(primes.get(m))) {
 								continue;
 							}
@@ -48,12 +67,6 @@ public class Q60 {
 							list.add(primes.get(l));
 							list.add(primes.get(m));
 							
-							Set<Integer> combinations = findAllCombinations(list);
-							for (Integer combi : combinations) {
-								if (primeSet.contains(combi) == false) {
-									continue INNER;
-								}
-							}
 							System.out.println(list);
 							int tempResult = 0;
 							for (Integer sum : list) {
