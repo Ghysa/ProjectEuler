@@ -25,7 +25,7 @@ public class ProjectEuler {
 //    	list.add(2578);
 //    	list.add(7823);
     	
-    	System.out.println("result: " + Q62.cubicPermutations());
+    	System.out.println("result: " + Q92.squareDigitChains(10000000));
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }
