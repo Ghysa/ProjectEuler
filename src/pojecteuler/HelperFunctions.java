@@ -3,8 +3,10 @@ package pojecteuler;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class HelperFunctions {
@@ -64,6 +66,18 @@ public class HelperFunctions {
         }
         List<Integer> list = new ArrayList<>(set);
         return list;
+	}
+	
+	public static Map<Integer, Integer> findPrimeFactorsAndMultiplicity(int number) {
+		List<Integer> primeFactors = findPrimeFactors(number);
+		Set<Integer> primeFactorsSet = new HashSet<>(primeFactors);
+		Map<Integer, Integer> map = new HashMap<>();
+		
+		for (Integer prime : primeFactorsSet) {
+			map.put(prime, Collections.frequency(primeFactors, prime));
+		}
+		
+		return map;
 	}
 	
 	public static boolean isPrime(long n) {
@@ -161,6 +175,19 @@ public class HelperFunctions {
 				return false;
 		}
 		return true;
+	}
+	
+	public static boolean isPermutation(int number1, int number2) {
+		List<Integer> digitsN1 = getDigits(number1);
+		List<Integer> digitsN2 = getDigits(number2);
+		
+		Collections.sort(digitsN1);
+		Collections.sort(digitsN2);
+		
+		if (digitsN1.equals(digitsN2)) {
+			return true;
+		}
+		return false;
 	}
 
 	public static boolean isPalindromeBase10(int number) {
@@ -317,5 +344,54 @@ public class HelperFunctions {
 		if (min > 1)
 			list.remove(0);
 		return list;
+	}
+
+	public static int getFactorialDigitSum(int number) {
+		int result = 0;
+		List<Integer> digits = getDigits(number);
+		
+		for(Integer digit : digits) {
+			result += factorialRecursive(digit);
+		}
+		
+		return result;
+	}
+
+
+	public static List<Integer> getDivisors(int number) {
+		Map<Integer, Integer> primes = findPrimeFactorsAndMultiplicity(number);
+		List<Integer> divisors = new ArrayList<>();
+		List<List<Integer>> temp = new ArrayList<>();
+		
+		for (Integer prime : primes.keySet()) {
+			List<Integer> factorList = new ArrayList<>();
+			int factor = 1;
+			for (int i = 1; i <= primes.get(prime); i++) {
+				factor *= prime;
+				factorList.add(factor);
+			}
+			temp.add(factorList);
+		}
+		for (int i = 0; i < temp.size(); i++) {
+			for (int j = 0; j < temp.get(i).size(); j++) {
+				// TODO: multiply every element of each list with each other.
+			}
+		}
+		
+		return divisors;
+	}
+	
+	public static int numberOfRelativePrimes(int number) {
+		List<Integer> factors = HelperFunctions.findDistinctPrimeFactors(number);
+		Set<Integer> nonRelPrimes = new HashSet<>();
+		
+		for (Integer factor : factors) {
+			for (int i = 1, result = 0; result < number; i++) {
+				result = factor * i;
+				nonRelPrimes.add(result);
+			}
+		}
+		
+		return number - nonRelPrimes.size();
 	}
 }

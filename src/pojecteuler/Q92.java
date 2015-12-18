@@ -7,7 +7,7 @@ public class Q92 {
 		int result = 0;
 		
 		for (int i = 2; i < max; i++) {
-			if(getChainNumber(i) == 89) {
+			if(getSquareChainNumber(i) == 89) {
 				result++;
 			}
 		}
@@ -15,7 +15,7 @@ public class Q92 {
 		return result;
 	}
 	
-	public static int getChainNumber(int number) {
+	public static int getSquareChainNumber(int number) {
 		while (true) {
 			int newNumber = getAddedSquareOfDigits(number);
 			if (newNumber == 89 || newNumber == 1) {

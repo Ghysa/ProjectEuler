@@ -1,9 +1,11 @@
-package pojecteuler;
+package Q51_60;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import pojecteuler.HelperFunctions;
 
 public class Q60 {
 	public static int primePairSets() {
@@ -46,7 +48,6 @@ public class Q60 {
 								|| primes.get(k).equals(primes.get(l))) {
 							continue;
 						}
-						INNER:
 						for (int m = l+1; m < primes.size(); m++) {
 							if (containsSet.contains(HelperFunctions.concatenateInts(primes.get(i), primes.get(m))) == false 
 									|| containsSet.contains(HelperFunctions.concatenateInts(primes.get(m), primes.get(i))) == false
