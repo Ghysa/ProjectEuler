@@ -18,7 +18,7 @@ public class ProjectEuler {
     	
     	long startTime = System.currentTimeMillis();
     	
-    	System.out.println("result: " + Q59.XORDecryption());
+    	System.out.println("result: " + Q71.orderedFractions(1000000));
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }
