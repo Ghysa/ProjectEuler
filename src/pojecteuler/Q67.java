@@ -16,7 +16,7 @@ public class Q67 {
 		try {
 			for (String line : Files.readAllLines(Paths.get("res/p067_triangle.txt"))) {
 			    for (String part : line.split("\\s+")) {
-			    	if (isNumeric(part)) {
+			    	if (HelperFunctions.isNumeric(part)) {
 				        Integer i = Integer.valueOf(part);
 				        numbers.add(i);
 			    	}
@@ -80,18 +80,5 @@ public class Q67 {
         }
 		
 		return result;
-	}
-	
-	public static boolean isNumeric(String str)
-	{
-		try
-		{
-			Double.parseDouble(str);
-		}
-		catch(NumberFormatException nfe)
-		{
-			return false;
-		}
-		return true;
 	}
 }

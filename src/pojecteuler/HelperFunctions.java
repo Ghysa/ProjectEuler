@@ -357,7 +357,6 @@ public class HelperFunctions {
 		return result;
 	}
 
-
 	public static List<Integer> getDivisors(int number) {
 		Map<Integer, Integer> primes = findPrimeFactorsAndMultiplicity(number);
 		List<Integer> divisors = new ArrayList<>();
@@ -393,5 +392,44 @@ public class HelperFunctions {
 		}
 		
 		return number - nonRelPrimes.size();
+	}
+
+	public static Map<Integer, BigInteger> continuedFractionNumerator(Map<Integer, Integer> sequence) {
+		Map<Integer, BigInteger> kn = new HashMap<>();
+		kn.put(-2, new BigInteger("0"));
+		kn.put(-1, new BigInteger("1"));
+		
+		for (int i = 0; i < sequence.size(); i ++) {
+			BigInteger num = new BigInteger(String.valueOf(sequence.get(i)));
+			num = num.multiply(kn.get(i-1));
+			num = num.add(kn.get(i-2));
+			kn.put(i, num);
+		}
+		
+		return kn;
+	}
+	
+	public static Map<Integer, BigInteger> continuedFractionDenominator(Map<Integer, Integer> sequence) {
+		Map<Integer, BigInteger> kn = new HashMap<>();
+		kn.put(-2, new BigInteger("1"));
+		kn.put(-1, new BigInteger("0"));
+		
+		for (int i = 0; i < sequence.size(); i ++) {
+			BigInteger num = new BigInteger(String.valueOf(sequence.get(i)));
+			num = num.multiply(kn.get(i-1));
+			num = num.add(kn.get(i-2));
+			kn.put(i, num);
+		}
+		
+		return kn;
+	}
+
+	public static boolean isNumeric(String str) {
+		try {
+			Double.parseDouble(str);
+		} catch(NumberFormatException nfe) {
+			return false;
+		}
+		return true;
 	}
 }
