@@ -468,4 +468,39 @@ public class HelperFunctions {
 	public static BigDecimal bigSqrt(BigDecimal c){
 	    return sqrtNewtonRaphson(c,new BigDecimal(1),new BigDecimal(1).divide(SQRT_PRE));
 	}
+
+	public static List<BigInteger> partition(int maxN) {
+		List<BigInteger> bigList = new ArrayList<>();
+		bigList.add(BigInteger.ONE);
+		bigList.add(BigInteger.ONE);
+		bigList.add(new BigInteger("2"));
+		bigList.add(new BigInteger("3"));
+		
+		for (int n = 4; n < maxN; n++) {
+			BigInteger bigAdd = BigInteger.ZERO;
+			int k = 1;
+			while (n - k*(3*k-1)/2 >= 0) {
+				BigInteger sign = BigInteger.ONE;
+				if ((k+1) % 2 == 0) {
+					sign = BigInteger.ONE;
+				} else {
+					sign = BigInteger.ONE.negate();
+				}
+				BigInteger s1 = BigInteger.ZERO;
+				BigInteger s2 = BigInteger.ZERO;
+				if (n - k*(3*k+1)/2 >= 0) {
+					s1 = bigList.get(n - k*(3*k+1)/2);
+				}
+				if (n - k*(3*k-1)/2 >= 0) {
+					s2 = bigList.get(n - k*(3*k-1)/2);
+				}
+				BigInteger sum = s1.add(s2);
+				bigAdd = bigAdd.add(sign.multiply(sum));
+				k++;
+			}
+			bigList.add(bigAdd);
+		}
+		return bigList;
+	}
+
 }

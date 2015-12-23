@@ -17,8 +17,8 @@ public class ProjectEuler {
     public static void main(String[] args) {
     	
     	long startTime = System.currentTimeMillis();
-    	
-    	System.out.println("result: " + Q80.squareRootDigitalExpansion(100));
+		
+    	System.out.println("result: " + Q82.pathSumThreeWay());
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }
