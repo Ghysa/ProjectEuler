@@ -11,8 +11,8 @@ public class Q71 {
 		fractions.add(new BigFraction(3.0, 7.0));
 		fractions.add(new BigFraction(423752.0, 999725.0));
 		
-		for (double i = d*0.999; i <= d; i++) {
-			for (double j = d*0.42; j <= d*0.43 && j < i; j++) {
+		for (double i = d*0.9999; i <= d; i++) {
+			for (double j = d*0.428; j <= d*0.43 && j < i; j++) {
 				fractions.add(new BigFraction(j, i));
 			}
 			System.out.println(i);

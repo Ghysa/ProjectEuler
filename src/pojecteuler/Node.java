@@ -1,6 +1,6 @@
 package pojecteuler;
 
-public class Node {
+public class Node implements Comparable<Node> {
 	private int cost;
 	private int totalCost;
 	private int xPos;
@@ -17,12 +17,35 @@ public class Node {
 	
 	private int calculateTotalCost() {
 		Node tempNode = this.prevNode;
-		int totCost = 0;
+		int totCost = this.cost;
 		while (tempNode != null) {
 			totCost += tempNode.getCost();
 			tempNode = tempNode.getPrevNode();
 		}
 		return totCost;
+	}
+	
+	public int compareTo(Node node) {
+		int nodeTotalCost = node.getTotalCost();
+		if (this.totalCost > nodeTotalCost) {
+			return 1;
+		} else if (this.totalCost < nodeTotalCost) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+	
+	public boolean equals(Node node) {
+		if (this.cost == node.getCost()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public String toString() {
+		return "x: " + this.xPos + " | y: " + this.yPos + " | cost: " + this.cost + " | totalCost: " + this.totalCost;
 	}
 
 	public int getCost() {
@@ -31,6 +54,16 @@ public class Node {
 
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+	
+	
+
+	public int getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(int totalCost) {
+		this.totalCost = totalCost;
 	}
 
 	public int getxPos() {
