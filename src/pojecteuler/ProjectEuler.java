@@ -18,7 +18,7 @@ public class ProjectEuler {
     	
     	long startTime = System.currentTimeMillis();
 		
-    	System.out.println("result: " + Q82.pathSumThreeWay());
+    	System.out.println("result: " + Q75.singularIntegerRightTriangles(1500000));
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }
