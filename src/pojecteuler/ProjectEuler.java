@@ -18,7 +18,7 @@ public class ProjectEuler {
     	
     	long startTime = System.currentTimeMillis();
 		
-    	System.out.println("result: " + Q85.countingRectangles(2000000));
+    	System.out.println("result: " + Q79.passcodeDerivation());
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }
