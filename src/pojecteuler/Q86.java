@@ -20,8 +20,6 @@ public class Q86 {
 			}
 		}
 		
-		System.out.println(count);
-		
 		return result;
 	}
 
