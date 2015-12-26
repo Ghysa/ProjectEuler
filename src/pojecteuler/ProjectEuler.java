@@ -18,7 +18,7 @@ public class ProjectEuler {
     	
     	long startTime = System.currentTimeMillis();
 		
-    	System.out.println("result: " + Q79.passcodeDerivation());
+    	System.out.println("result: " + Q86.cuboidRoute());
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }
