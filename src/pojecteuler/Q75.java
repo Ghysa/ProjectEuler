@@ -10,7 +10,7 @@ public class Q75 {
 		for (int m = 2; m < Math.sqrt(maxL/2); m++) {
 			for (int n = 1; n < m; n++) {
 				// It's important to check if m & n are coprime otherwise we are not
-				// generating a primitive triplet and thus are generating the same triplet
+				// generating a primitive triplet and thus we would be generating the same triplet
 				// multiple times.
 				if (((m+n) % 2 == 1) && (HelperFunctions.findGCD(m, n) == 1)) {
 					int a = calcA(m,n);
