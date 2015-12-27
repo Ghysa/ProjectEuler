@@ -6,24 +6,24 @@ import java.util.Set;
 
 public class Q58 {
 	public static int spiralPrimes(double maxRatio) {
-		int result = 0;
-		double ratio = 1.0;
-		int c = 7;
-		int nrOfPrimes = 0;
-		int add = 2;
+		int nrOfPrimes = 3;
+		int number = 9;
+		int add = 4;
 		
 		while ((double)nrOfPrimes / (2*add+1) > maxRatio) {
-			add += 2;
-			for (int i = 0; i < 3; i++) {
-				c += add;
-				if (isPseudoPrime(c)) nrOfPrimes++;
+			for (int i = 0; i < 4; i++) {
+				number += add;
+				if (HelperFunctions.isPseudoPrime(number)) {
+					nrOfPrimes++;
+				}
 			}
-			c += add;
+			add += 2;			
 		}
 		
 		return add+1;
 	} 
 	
+	// Old attempts, don't bother they are waaaay too slow and incorrect
 	public static double spiralPrimeLoop(int dim, Set<Integer> primesSet) {
 		
 		List<Integer> diagonals = new ArrayList<>();
@@ -138,55 +138,6 @@ public class Q58 {
 		System.out.println("ratio: " + ratio);
 		
 		return ratio;
-	}
-	
-	private static boolean isPseudoPrime(int n) {
-		if (n <= 1) return false;
-		if (n == 2) return true;
-		if (n % 2 == 0) return false;
-		if (n < 9) return true;
-		if (n % 3 == 0) return false;
-		if (n % 5 == 0) return false;
-
-		int[] ar = new int[] {2, 3};
-		for (int i = 0; i < ar.length; i++) {
-			if (Witness(ar[i], n)) return false;
-		}
-		return true;
-	}
-
-
-	private static boolean Witness(int a, int n) {
-		int t = 0;
-		int u = n - 1;
-		while ((u & 1) == 0) {
-			t++;
-			u >>= 1;
-		}
-
-		long xi1 = ModularExp(a, u, n);
-		long xi2;
-
-		for (int i = 0; i < t; i++) {
-			xi2 = xi1 * xi1 % n;                
-			if ((xi2 == 1) && (xi1 != 1) && (xi1 != (n - 1))) return true;
-			xi1 = xi2;
-		}
-		if (xi1 != 1) return true;
-		return false;
-	}
-	
-	private static long ModularExp(int a, int b, int n) {
-		long d = 1;
-		int k = 0;
-		while ((b >> k) > 0) k++;
-
-		for (int i = k - 1; i >= 0; i--) {
-			d = d * d % n;
-			if (((b >> i) & 1) > 0) d = d * a % n;
-		}
-
-		return d;
 	}
 	
 	public enum Move {
