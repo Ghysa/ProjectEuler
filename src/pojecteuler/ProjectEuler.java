@@ -18,7 +18,7 @@ public class ProjectEuler {
     	
     	long startTime = System.currentTimeMillis();
 		
-    	System.out.println("result: " + Q58.spiralPrimes(0.1));  
+    	System.out.println("result: " + Q62.cubicPermutations());  
     	
     	System.out.println((System.currentTimeMillis()-startTime)+" ms");
     }

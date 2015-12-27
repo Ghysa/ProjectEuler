@@ -1,43 +1,39 @@
 package pojecteuler;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class Q62 {
 	public static BigInteger cubicPermutations() {
 		
+		// Make a list with all cubes with base smaller than 10000
 		List<BigInteger> cubes = new ArrayList<>();
-		
-		for (int base = 2; base < 10000; base++) {
+		for (int base = 1; base < 10000; base++) {
 			BigInteger baseBig = new BigInteger(String.valueOf(base));
 			cubes.add(baseBig.pow(3));
 		}
 		
-		for (int i = 0 ; i < 30; i++) {
-			cubes.remove(0);
-		}
-		System.out.println(cubes);
-		Set<BigInteger> cubeSet = new HashSet<>(cubes);
-		
+		// Get a list of the digits of a cube, then sort it so all permutations
+		// will have the same list.
+		List<List<Integer>> cubesDigits = new ArrayList<>();
 		for (BigInteger cube : cubes) {
-			List<BigInteger> permutations = new ArrayList<>();
 			List<Integer> digits = HelperFunctions.getDigitsString(cube.toString());
-			HelperFunctions.calculatePermutations(digits, permutations, 0);
-			Set<BigInteger> permuSet = new HashSet<>(permutations);
-			int count = 0;
-			for (BigInteger permu : permuSet) {
-				if (cubeSet.contains(permu)) {
-					count++;
-					if (count == 5) {
-						System.out.println(permuSet);
-						return cube;						
-					}
-				}
+			Collections.sort(digits);
+			cubesDigits.add(digits);
+		}
+		
+		// Then find a list that occurs 5 times and get the first index of that list.
+		BigInteger result = BigInteger.ZERO;
+		for (List<Integer> digits : cubesDigits) {
+			int count = Collections.frequency(cubesDigits, digits);
+			if (count == 5) {
+				result = new BigInteger(String.valueOf(cubesDigits.indexOf(digits)+1));
+				result = result.pow(3);
+				break;
 			}
 		}
 		
-		return BigInteger.ONE;
+		return result;
 	}
 }
